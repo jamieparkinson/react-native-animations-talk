@@ -150,6 +150,10 @@ export default class Presentation extends React.Component {
             </Fill>
           </Layout>
         </Slide>
+        <Slide transition={['scale']} bgColor="tertiary">
+          <Heading size={6} textColor="secondary">Transitions</Heading>
+
+        </Slide>
       </Deck>
     );
   }
