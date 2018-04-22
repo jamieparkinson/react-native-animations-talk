@@ -1,23 +1,63 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Font } from 'expo';
+import { TabNavigator } from 'react-navigation';
+import * as Steps from './steps';
+import wrapStep from './wrapStep';
+
+console.disableYellowBox = true;
+
+const wrapAllSteps = (routes, { showLabel }) => Object.keys(routes)
+  .reduce((wrapped, route) => {
+    wrapped[route] = {
+      ...routes[route],
+      screen: wrapStep(routes[route].screen, showLabel)
+    };
+    return wrapped;
+  }, {});
+
+const RootNav = TabNavigator(wrapAllSteps({
+  'Pre-animation': {
+    screen: Steps.UnAnimated
+  },
+  'Basic animation': {
+    screen: Steps.WithButton
+  },
+  'With interpolation': {
+    screen: Steps.Interpolate
+  },
+  'With opacity interpolation': {
+    screen: Steps.InterpolateOpacity
+  },
+  'Basic gesture': {
+    screen: Steps.Gesture
+  },
+  'Gesture with opacity': {
+    screen: Steps.GestureOpacity
+  },
+  'Gesture with a spring!': {
+    screen: Steps.GestureSpring
+  },
+}, { showLabel: false }), {
+  swipeEnabled: false,
+  initialRouteName: 'Gesture with a spring!',
+  tabBarComponent: () => null,
+  lazy: false
+});
 
 export default class App extends React.Component {
+  state = {
+    fontLoaded: false,
+  };
+
+  async componentDidMount() {
+    await Font.loadAsync({
+      'opensans-extrabold': require('./assets/OpenSans-ExtraBold.ttf')
+    });
+
+    this.setState({ fontLoaded: true });
+  }
+
   render() {
-    return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
-      </View>
-    );
+    return this.state.fontLoaded ? <RootNav /> : null;
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
