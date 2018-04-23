@@ -10,8 +10,8 @@ class Animation extends React.Component {
     super(props);
 
     this.panResponder = PanResponder.create({
-      onStartShouldSetPanResponder: () => true,
-      onPanResponderMove: Animated.event([null, {
+      onStartShouldSetPanResponder: () => true,    // Something like "when the touch starts this component should handle it"
+      onPanResponderMove: Animated.event([null, {  // Bind our value to the vertical change in touch position
         dy: this.state.value
       }])
     });
@@ -24,6 +24,7 @@ class Animation extends React.Component {
     };
     return (
       <View>
+        {/* `panHandlers` is an object full of props for a View */}
         <Animated.View
           {...this.panResponder.panHandlers}
           style={animationStyle}

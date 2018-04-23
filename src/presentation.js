@@ -51,19 +51,6 @@ const CentredReasonableVid = styled.video`
   margin: 0 auto !important;
 `;
 
-const TinyButton = styled.button`
-  position: absolute;
-  top: 0;
-  right: 0;
-  font-size: 10px;
-  outline: none;
-  border: none;
-  padding: 0;
-  margin: 0;
-  width: 10px;
-  height: 10px;
-`
-
 const AppearingListItem = ({children, ...props}) => (
   <Appear>
     <ListItem padding="10px 0" {...props}>
@@ -107,12 +94,12 @@ export default class Presentation extends React.Component {
         <Slide transition={['fade']} bgColor="tertiary" viewerScaleMode>
           <Notes>
             <p>This is me!</p>
-            Technology Will Save Us - we make toys that kids can build & code themselves. We have a digital experience alongside the physical kits that we sell, that's what I work on.
+            Tech Will Save Us - we make toys that kids can build & code themselves. We have a digital experience alongside the physical kits that we sell, that's what I work on.
           </Notes>
           <Heading size={6} textColor="secondary">Me</Heading>
           <CircleImage margin="30px auto" src={me} height={300} />
           <Text margin="40px 0 0" textColor="secondary" bold>@jamieparkinson</Text>
-          <Text margin="20px 0 0" textColor="secondary" bold>Technology Will Save Us</Text>
+          <Text margin="20px 0 0" textColor="secondary" bold>Tech Will Save Us</Text>
         </Slide>
         <Slide transition={['fade']} bgColor="primary" textColor="tertiary" viewerScaleMode>
           <Notes>
@@ -452,6 +439,20 @@ export default class Presentation extends React.Component {
             <ListItem textSize="27px" margin="10px 0 0 0">More...</ListItem>
           </List>
         </Slide>
+        <Slide className="fullscreen-slide" bgColor="secondary" viewerScaleMode>
+          <Notes>
+            And here's a taster of what you can achieve using some of those things!
+          </Notes>
+          <video
+            style={{
+              width: '98vw',
+              height: '98vh'
+            }}
+            ref={ el => { this.dough = el; }}
+            src={require('./assets/doughrn.webm')}
+            onClick={ () => this.dough.play() }
+          />
+        </Slide>
         <Slide transition={['zoom']} bgImage={require('./assets/space.jpg')} bgDarken={0.5} viewerScaleMode>
           <Notes>
             I'd just like to finish with talking about another approach that's really powerful to get your apps to another level with next to no dev time!
@@ -475,9 +476,7 @@ export default class Presentation extends React.Component {
         </Slide>
         <Slide className="fullscreen-slide" bgColor="secondary" viewerScaleMode>
           <Notes>
-            And finally I'll just show you this - this is a taste of something we did at TWSU that uses React Native *and* Lottie animations and
-            the vast majority of which was done by a small team with no prior RN experience, and I apologise if the video is a bit laggy but
-            I hope that it can show you what I mean by this 'delight' that animations in native apps can bring!
+            And so just for a bit of fun I'll finish with this - taking Lottie to its limits in our app.
           </Notes>
           <video
             style={{
@@ -485,7 +484,7 @@ export default class Presentation extends React.Component {
               height: '98vh'
             }}
             ref={ el => { this.dough = el; }}
-            src={require('./assets/dough.webm')}
+            src={require('./assets/doughlottie.webm')}
             onClick={ () => this.dough.play() }
           />
         </Slide>
@@ -494,6 +493,7 @@ export default class Presentation extends React.Component {
             So that's that, thank you! Any questions?
           </Notes>
           <Heading size={3} textColor="secondary">Thank you!</Heading>
+          <Text bold textColor="secondary" textSize="28px" margin="50px 0 0 0">jamieparkinson/react-native-animations-talk</Text>
         </Slide>
       </Deck>
     );

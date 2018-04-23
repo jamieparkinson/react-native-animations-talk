@@ -1,5 +1,10 @@
 {
   "expo": {
+    "name": "RN Animations",
+    "slug": "rn-animations",
+    "description": "Examples for a talk at the React London meetup of April 2018",
+    "privacy": "public",
+    "githubUrl": "https://github.com/jamieparkinson/react-native-animations-talk",
     "sdkVersion": "26.0.0"
   }
 }

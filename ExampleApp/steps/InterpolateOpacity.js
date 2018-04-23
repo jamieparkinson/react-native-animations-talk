@@ -21,6 +21,8 @@ class Animation extends React.Component {
     const { value } = this.state;
     const animationStyle = {
       transform: [{ translateY: value }],
+      // We can interpolate opacities too!
+      // Notice that the output range goes 'backwards', that's fine as it's just a linear interpolation
       opacity: value.interpolate({
         inputRange: [0, 350],
         outputRange: [1, 0.2]

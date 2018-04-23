@@ -14,13 +14,15 @@ class Animation extends React.Component {
       onPanResponderMove: Animated.event([null, {
         dy: this.state.value
       }]),
-      onPanResponderRelease: () => {
+      onPanResponderRelease: () => { // When the touch is released
+        // Basically just a simulated spring with an end value and duration.
+        // For those who care, it's not a proper harmonic oscillator by default.
         const spring = Animated.spring(
           this.state.value,
           {
             toValue: 0,
             duration: 250,
-            bounciness: 12,
+            bounciness: 12, // This looks better than the default
           }
         );
         spring.start();

@@ -4,6 +4,8 @@ import { TabNavigator } from 'react-navigation';
 import * as Steps from './steps';
 import wrapStep from './wrapStep';
 
+// You probably don't want to look at this code, have a look at ./steps/* instead
+
 console.disableYellowBox = true;
 
 const wrapAllSteps = (routes, { showLabel }) => Object.keys(routes)
@@ -37,9 +39,8 @@ const RootNav = TabNavigator(wrapAllSteps({
   'Gesture with a spring!': {
     screen: Steps.GestureSpring
   },
-}, { showLabel: false }), {
-  swipeEnabled: false,
-  initialRouteName: 'Gesture with a spring!',
+}, { showLabel: true }), {
+  swipeEnabled: true,
   tabBarComponent: () => null,
   lazy: false
 });

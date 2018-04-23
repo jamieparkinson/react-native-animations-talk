@@ -23,6 +23,8 @@ class Animation extends React.Component {
       transform: [
         { translateY: value },
         {
+          // As before apart from this bit: we know our value will go between 0 and 350,
+          // But we only want x to go between 0 and 200. Easy!
           translateX: value.interpolate({
             inputRange: [0, 350],
             outputRange: [0, 200]

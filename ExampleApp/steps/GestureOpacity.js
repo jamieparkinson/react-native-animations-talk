@@ -21,6 +21,7 @@ class Animation extends React.Component {
     const { value } = this.state;
     const animationStyle = {
       transform: [{ translateY: value }],
+      // This is just like before!
       opacity: value.interpolate({
         inputRange: [0, 350],
         outputRange: [1, 0.2]
